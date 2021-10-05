@@ -21,3 +21,4 @@ models/*/*/*.png
 waifu2x.log
 waifu2x-*.log
 waifu2x_*.log
+.idea
