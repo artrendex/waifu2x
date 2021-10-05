@@ -275,7 +275,6 @@ local function convert(x, meta, options)
 				   x, opt.crop_size, opt.batch_size)
 	 cleanup_model(model[options.method])
       end
-      cache_put(cache_file, x, alpha)
       meta = tablex.copy(meta)
       meta.alpha = alpha
       return x, meta
@@ -362,8 +361,8 @@ function APIHandler:post()
 	    end
 	 elseif (noise == 0 or noise == 1 or noise == 2 or noise == 3) then
 	    prefix = style .. string.format("_noise%d_tta_", noise) .. tta_level .. "_"
-	    x = convert(x, meta, {method = string.format("noise%d", noise), 
-				  style = style, 
+	    x = convert(x, meta, {method = string.format("noise%d", noise),
+				  style = style,
 				  tta_level = tta_level,
 				  prefix = prefix .. hash,
 				  alpha_prefix = alpha_prefix,
@@ -372,7 +371,7 @@ function APIHandler:post()
 	 end
       end
       local name = nil
-      if filename then 
+      if filename then
 	 if prefix then
 	    name = make_output_filename(filename, prefix:sub(0, prefix:len()-1))
 	 else
